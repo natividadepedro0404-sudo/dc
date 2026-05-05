@@ -1,0 +1,16 @@
+{
+  "user_check_delay_ms": 10,
+  "user_scan_batch_size": 3,
+  "use_proxy": false,
+  "proxy": {
+    "protocol": "http",
+    "host": "108.165.197.129",
+    "port": 6368,
+    "auth": {
+      "username": "allancpa2",
+      "password": "allancpa22"
+    }
+  }
+}
+
+
