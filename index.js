@@ -1,4 +1,3 @@
-import { Client, WebhookClient, MessageEmbed } from 'discord.js-selfbot-v13';
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
@@ -72,6 +71,8 @@ try {
 } catch (error) {
   console.error('❌ Erro ao aplicar patch:', error.message);
 }
+
+const { Client, WebhookClient, MessageEmbed } = await import('discord.js-selfbot-v13');
 
 let config;
 
