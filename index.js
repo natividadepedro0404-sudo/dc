@@ -583,8 +583,10 @@ client.on('error', (error) => {
   console.error('❌ Erro no cliente:', error.message);
 });
 
-app.listen(3000, () => {
-  console.log('🌐 API rodando na porta 3000');
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`🌐 API rodando na porta ${PORT}`);
 });
 
 // Conecta o bot
@@ -593,8 +595,3 @@ client.login(config.token).catch((error) => {
   process.exit(1);
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`🌐 API rodando na porta ${PORT}`);
-});
