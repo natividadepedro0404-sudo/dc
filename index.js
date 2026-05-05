@@ -50,20 +50,16 @@ try {
 
   let content = readFileSync(filePath, 'utf-8');
 
-  content = content.replace(
-    /all:\s*data\.friend_source_flags\.all\s*\|\|\s*false,/g,
-    'all: data.friend_source_flags?.all || false,'
-  );
-
-  content = content.replace(
-    /mutual_friends:\s*data\.friend_source_flags\.all\s*\?\s*true\s*:\s*data\.friend_source_flags\.mutual_friends\s*\|\|\s*false,/g,
-    'mutual_friends: data.friend_source_flags?.all ? true : (data.friend_source_flags?.mutual_friends || false),'
-  );
-
-  content = content.replace(
-    /mutual_guilds:\s*data\.friend_source_flags\.all\s*\?\s*true\s*:\s*data\.friend_source_flags\.mutual_guilds\s*\|\|\s*false,/g,
-    'mutual_guilds: data.friend_source_flags?.all ? true : (data.friend_source_flags?.mutual_guilds || false),'
-  );
+  
+content = content.replace(
+  /this\.addFriendFrom\s*=\s*\{[\s\S]*?all:[\s\S]*?mutual_friends:[\s\S]*?mutual_guilds:[\s\S]*?\};/,
+  `const flags = data.friend_source_flags || {};
+      this.addFriendFrom = {
+        all: flags.all || false,
+        mutual_friends: flags.all ? true : (flags.mutual_friends || false),
+        mutual_guilds: flags.all ? true : (flags.mutual_guilds || false),
+      };`
+);
 
   writeFileSync(filePath, content, 'utf-8');
 
